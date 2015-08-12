@@ -1,0 +1,78 @@
+{{!
+/* Copyright IBM Corp. 2015
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+}}
+
+package {{package}};
+
+{{#imports}}import {{import}};
+{{/imports}}
+
+import com.wordnik.swagger.annotations.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
+{{#models}}
+
+{{#model}}{{#description}}
+/**
+ * {{description}}
+ **/{{/description}}
+@ApiModel(description = "{{{description}}}")
+public class {{classname}} {{#parent}}extends {{{parent}}}{{/parent}} {
+  {{#vars}}{{#isEnum}}
+  public enum {{datatypeWithEnum}} {
+    {{#allowableValues}}{{#values}} {{.}}, {{/values}}{{/allowableValues}}
+  };
+  @SerializedName("{{baseName}}") private {{{datatypeWithEnum}}} {{name}} = {{{defaultValue}}};{{/isEnum}}{{^isEnum}}
+  @SerializedName("{{baseName}}") private {{{datatype}}} {{name}} = {{{defaultValue}}};{{/isEnum}}{{/vars}}  
+  
+  public {{classname}}() {
+  }
+  
+  {{^vars.isEmpty}}
+  public {{classname}}({{#vars}}{{{datatypeWithEnum}}} {{name}}{{#hasMore}}, {{/hasMore}}{{/vars}}) {
+    {{#vars}}this.{{name}} = {{name}};{{#hasMore}}
+    {{/hasMore}}{{/vars}}
+  }
+  {{/vars.isEmpty}}
+  
+  {{#vars}}
+  /**{{#description}}
+   * {{{description}}}{{/description}}{{#minimum}}
+   * minimum: {{minimum}}{{/minimum}}{{#maximum}}
+   * maximum: {{maximum}}{{/maximum}}
+   **/
+  @ApiModelProperty({{#required}}required = {{required}}, {{/required}}value = "{{{description}}}")
+  @JsonProperty("{{baseName}}")
+  public {{{datatypeWithEnum}}} {{getter}}() {
+    return {{name}};
+  }
+  public void {{setter}}({{{datatypeWithEnum}}} {{name}}) {
+    this.{{name}} = {{name}};
+  }
+  {{/vars}}
+
+  @Override
+  public String toString()  {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class {{classname}} {\n");
+    {{#parent}}sb.append("  " + super.toString()).append("\n");{{/parent}}
+    {{#vars}}sb.append("  {{name}}: ").append({{name}}).append("\n");
+    {{/vars}}sb.append("}\n");
+    return sb.toString();
+  }
+}
+{{/model}}
+{{/models}}

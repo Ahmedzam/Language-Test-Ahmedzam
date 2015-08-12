@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/framework-ega-tools/src/main/java/com/ibm/watson/app/common/tools/services/classifier/TrainClassifier.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.CLASSPATH_PROVIDER" value="org.eclipse.m2e.launchconfig.classpathProvider"/>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.ibm.watson.app.common.tools.services.classifier.TrainClassifier"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="--url &quot;https://gateway-d.watsonplatform.net/natural-language-classifier-alpha/api&quot;&#13;&#10;--username &quot;${string_prompt:Classifier instance username}&quot;&#13;&#10;--password &quot;${string_prompt:Classifier instance password}&quot;&#13;&#10;--delete"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="framework-ega-tools"/>
+<stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.m2e.launchconfig.sourcepathProvider"/>
+<stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="${workspace_loc}"/>
+</launchConfiguration>
