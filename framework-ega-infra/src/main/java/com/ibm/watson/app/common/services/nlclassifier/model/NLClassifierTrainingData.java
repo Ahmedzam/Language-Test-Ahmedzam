@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -58,7 +59,7 @@ public class NLClassifierTrainingData {
 	}
 
 	public static NLClassifierTrainingData fromStream(InputStream stream) throws IOException {
-		try(Reader reader = new InputStreamReader(stream)) {
+		try(Reader reader = new InputStreamReader(stream, StandardCharsets.UTF_8)) {
 			return gson.fromJson(reader, NLClassifierTrainingData.class);
 		}
 	}
