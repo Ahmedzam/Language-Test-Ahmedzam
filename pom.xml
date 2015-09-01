@@ -28,7 +28,7 @@
   
   <properties>
     <bgAppGroupId>com.ibm.watson.app.gallery</bgAppGroupId>
-    <bgAppCommonBldVer>1.0.0-SNAPSHOT</bgAppCommonBldVer>
+    <bgAppCommonBldVer>1.0.1</bgAppCommonBldVer>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   
